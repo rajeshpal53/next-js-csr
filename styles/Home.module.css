@@ -73,6 +73,12 @@
   max-width: 800px;
 }
 
+.gridone {
+  display: grid;
+ grid-gap: 10px;
+ grid-template-columns: repeat(4,1fr);
+}
+
 .card {
   margin: 1rem;
   padding: 1.5rem;
@@ -83,6 +89,10 @@
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
   max-width: 300px;
+}
+
+.cardone img{
+ max-height: 200px;
 }
 
 .card:hover,
