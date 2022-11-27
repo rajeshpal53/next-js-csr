@@ -1,21 +1,20 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import React from 'react'
 import styles from '../styles/Home.module.css'
 import Link from "next/link";
 
-export default function Home() {
-  const [pokemon, setPokemon] = useState([]);
-  
-  useEffect(() => {
-    async function getPokemon() {
-      const resp = await fetch("https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json");
-      setPokemon(await resp.json())
+export async function getServerSideProps(){
+  const resp = await fetch("https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json");
+    
+    return {
+      props: {
+        pokemon: await resp.json(),
+      }
     }
-    getPokemon();
+}
 
-  },[]);
-  
+export default function Home({ pokemon }) {
+
   return (
     <div className={styles.container}>
       <Head>
@@ -26,7 +25,7 @@ export default function Home() {
       {/* <div>{JSON.stringify(pokemon)}</div> */}
 <div><h2>Pokemon List</h2></div>
       <div className={styles.gridone}>
-        {pokemon.map((pokemon) => (
+        { pokemon.map((pokemon) => (
 
       <div className={styles.cardone} key={pokemon.id}>
 
