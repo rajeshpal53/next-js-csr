@@ -24,7 +24,8 @@ export async function getStaticProps({params}) {
   return {
     props: {
       pokemon: await resp.json()
-    }
+    },
+    revalidate: 30 //optional - update page every 3o seconds
   }
 }
 
@@ -61,6 +62,7 @@ export default function Details({pokemon}) {
         </div>
         <div>
             <div className={styles.name}>{pokemon.name}</div>
+            <div>Rajesh</div>
             <div className={styles.type}> {pokemon.type.join(". ")}</div>
             <table>
             <thead className={styles.header}>
